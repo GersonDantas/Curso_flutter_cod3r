@@ -1,5 +1,7 @@
 # expenses
 
+![project rinning]('assets/animation/expenses.gif')
+
 A new Flutter project.
 
 ## Getting Started
