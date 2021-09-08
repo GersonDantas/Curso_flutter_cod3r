@@ -24,8 +24,10 @@ class MyHomePage extends StatelessWidget {
         // the App.build method, and use it to set our appbar title.
         title: Text('Flexible & Expanded'),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: Wrap(
+        direction: Axis.horizontal,
+        spacing: 40.0,
+        runSpacing: 20.0,
         children: <Widget>[
           Container(
             height: 100,
@@ -49,8 +51,35 @@ class MyHomePage extends StatelessWidget {
               color: Colors.orange,
             ),
           ),
+          Flexible(
+            flex: 1,
+            fit: FlexFit.loose,
+            child: Container(
+              height: 100,
+              child: Text('Item 3'),
+              color: Colors.brown,
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            fit: FlexFit.loose,
+            child: Container(
+              height: 100,
+              child: Text('Item 3'),
+              color: Colors.amber[500],
+            ),
+          ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height * 0.1,
+        color: Colors.amber[500],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 }
