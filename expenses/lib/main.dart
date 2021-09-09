@@ -48,9 +48,27 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Transaction> _transactions = [];
   bool _showChart = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  //será chamado sempre que ouver mudança no estado
+  @override
+  didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance?.removeObserver(this);
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -126,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
 
     final PreferredSizeWidget appBar = AppBar(
-      title: Text('Despesas Pessoais'),
+      title: const Text('Despesas Pessoais'),
       actions: actions,
     );
 
@@ -174,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
-              middle: Text('Despesas Pessoais'),
+              middle: const Text('Despesas Pessoais'),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: actions,

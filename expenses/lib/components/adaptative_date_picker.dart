@@ -27,7 +27,7 @@ class AdaptativeDatePicker extends StatelessWidget {
           return;
         }
 
-        onDateChanged!(pickedDate);
+        onDateChanged(pickedDate);
       });
 
       // print('fora do then');

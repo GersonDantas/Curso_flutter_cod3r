@@ -1,6 +1,8 @@
 # expenses
-
-![project rinning]('assets/animation/expenses.gif')
+ 
+<div align="center">
+  <img src="https://github.com/GersonDantas/Curso_flutter_cod3r/blob/master/expenses/assets/animation/expenses.gif" alt="project rinning" title="expenses" />
+</div>
 
 A new Flutter project.
 

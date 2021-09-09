@@ -5,16 +5,47 @@ import 'adaptative_button.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
-  TransactionForm(this.onSubmit);
+  TransactionForm(this.onSubmit) {
+    print('constructor TransactionForm');
+  }
 
   @override
-  _TransactionFormState createState() => _TransactionFormState();
+  _TransactionFormState createState() {
+    print('Create TransactionForm createstate');
+    return _TransactionFormState();
+  }
 }
 
 class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
   DateTime? _selectedDate;
+
+  _TransactionFormState() {
+    print('constructor _TransactionFormState');
+  }
+
+  //ciclos de vida do componentes
+
+  @override
+  void initState() {
+    super.initState();
+    print('InitState _TransactionFormState');
+  }
+
+  @override
+  void didUpdateWidget(covariant TransactionForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // widget: variável do componente atualizado
+    // oldWidget: componente antigo
+    print('didUpdateWidget _TransactionFormState');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose _TransactionFormState');
+  }
 
   void _submitForm() {
     final title = _titleController.text;
@@ -29,6 +60,7 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    print('Build() TransactionForm');
     return SingleChildScrollView(
       child: Card(
         elevation: 5,

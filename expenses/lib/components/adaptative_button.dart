@@ -6,7 +6,7 @@ class AdaptativeButton extends StatelessWidget {
   final String? label;
   final Function()? onPressed;
 
-  AdaptativeButton({
+  const AdaptativeButton({
     Key? key,
     this.label,
     this.onPressed,
@@ -28,13 +28,7 @@ class AdaptativeButton extends StatelessWidget {
           )
         : ElevatedButton(
             onPressed: onPressed,
-            child: Text(
-              label!,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-              ),
-              overflow: TextOverflow.fade,
-            ),
+            child: Text(label!),
           );
   }
 }
