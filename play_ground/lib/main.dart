@@ -1,85 +1,79 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
+  late final AnimationController controller =
+      AnimationController(vsync: this, duration: const Duration(seconds: 2))
+        ..repeat(reverse: true);
+
+  late final Animation<double> _animation =
+      CurvedAnimation(parent: controller, curve: Curves.bounceIn);
+
+  final List colors = [
+    Colors.red,
+    Colors.black,
+    Colors.amber,
+    Colors.brown,
+    Colors.redAccent,
+  ];
+
+  Color setColor() {
+    int i = Random().nextInt(4);
+    return colors[i];
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flexible & Expanded',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('Flexible & Expanded'),
-      ),
-      body: Wrap(
-        direction: Axis.horizontal,
-        spacing: 40.0,
-        runSpacing: 20.0,
-        children: <Widget>[
-          Container(
-            height: 100,
-            child: Text('Item 1 - pretty big!'),
-            color: Colors.red,
+        title: 'Flexible & Expanded',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            // Here we take the value from the MyHomePage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            title: Text('Flexible & Expanded'),
           ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              height: 100,
-              child: Text('Item 2'),
-              color: Colors.blue,
-            ),
+          body: Column(
+            children: [
+              Container(
+                height: 50,
+                width: 50,
+                color: setColor(),
+                margin: EdgeInsets.all(10),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                color: setColor(),
+                margin: EdgeInsets.all(10),
+              ),
+              FadeTransition(
+                opacity: _animation,
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  height: 50,
+                  width: 50,
+                  color: setColor(),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                height: 50,
+                width: 50,
+                color: setColor(),
+              )
+            ],
           ),
-          Flexible(
-            flex: 1,
-            fit: FlexFit.loose,
-            child: Container(
-              height: 100,
-              child: Text('Item 3'),
-              color: Colors.orange,
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            fit: FlexFit.loose,
-            child: Container(
-              height: 100,
-              child: Text('Item 3'),
-              color: Colors.brown,
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            fit: FlexFit.loose,
-            child: Container(
-              height: 100,
-              child: Text('Item 3'),
-              color: Colors.amber[500],
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-      bottomNavigationBar: Container(
-        height: MediaQuery.of(context).size.height * 0.1,
-        color: Colors.amber[500],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-    );
+        ));
   }
 }
