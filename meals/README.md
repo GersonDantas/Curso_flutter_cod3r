@@ -1,5 +1,9 @@
 # meals
 
+<div align="center">
+  <img src="https://github.com/GersonDantas/Curso_flutter_cod3r/blob/master/meals/assets/animations/Meals.gif" alt="project rinning" title="meals" />
+</div>
+
 A new Flutter project.
 
 ## Getting Started
